@@ -1,0 +1,122 @@
+.styled-table{
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    max-width: 1400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr{
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td{
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type{
+    border-bottom: 2px solid #009879;
+}
+
+.btn{
+    border: none;
+    color: white;
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn-reset{
+    background-color: #f44336;
+    margin: 10px 0px 10px 10px;
+}
+
+.btn-edit{
+    background-color: #008cba;
+}
+
+.btn-delete{
+    background-color: #f44336;
+}
+
+.btn-view{
+    background-color: #e7e7e7;
+    color: black;
+}
+
+.red{
+    color: red;
+}
+
+.green{
+    color: green;
+}
+
+.head{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.statusdrop{
+    width: 30%;
+    margin: 10px;
+    
+}
+.datee{
+    width: 100%;
+    margin: 8px;
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.ledger{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 99%;
+    margin: 8px;
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.ledger .da input{
+    width: 60%;
+    /* margin: 8px; */
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.Ledger-Info{
+    text-align: center;
+    margin: 10px;
+    color: #009879;
+}
+
+.ledger-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px;
+}
