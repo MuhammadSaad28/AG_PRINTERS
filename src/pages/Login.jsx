@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {  useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
@@ -19,14 +19,7 @@ function Login() {
     theme: 'light',
   };
 
-  // const handleValidation = () => {
-  //   if (email === '' || password === '') {
-  //     toast.error('All Fields Are Required', tostifyOption);
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // };
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,6 +30,7 @@ function Login() {
           localStorage.setItem('ag-token', user.accessToken);
           localStorage.setItem('ag-user', JSON.stringify(user));
           navigate('/');
+          toast.success('Login successful', tostifyOption);
     }catch(error){
       console.log(error)
     }
@@ -94,7 +88,6 @@ function Login() {
           </div>
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 }

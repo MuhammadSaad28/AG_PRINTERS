@@ -42,28 +42,31 @@ const viewRef = useRef(null);
     };
   }, []);
 
+ 
+
   useEffect(() => {
+    const applyFilters = () => {
+      const filteredData = {};
+      Object.keys(records).forEach((key) => {
+        const record = records[key];
+        if (
+          (!status || record.Status === status) &&
+          (!rgpFilter || record.RGP.includes(rgpFilter)) &&
+          (!poFilter || record.PO.includes(poFilter)) &&
+          (!dateFilter || record.date.includes(dateFilter)) &&
+          (!companyFilter || record.Company.toLowerCase().includes(companyFilter.toLowerCase())) &&
+          (!startDateFilter || record.date >= startDateFilter) && // Check if record date is after or equal to start date
+          (!endDateFilter || record.date <= endDateFilter) // Check if record date is before or equal to end date
+        ) {
+          filteredData[key] = record;
+        }
+      });
+      setFilteredRecords(filteredData);
+    };
     applyFilters();
   },[status, records, rgpFilter, poFilter, dateFilter, companyFilter, startDateFilter, endDateFilter]);
 
-  const applyFilters = () => {
-    const filteredData = {};
-    Object.keys(records).forEach((key) => {
-      const record = records[key];
-      if (
-        (!status || record.Status === status) &&
-        (!rgpFilter || record.RGP.includes(rgpFilter)) &&
-        (!poFilter || record.PO.includes(poFilter)) &&
-        (!dateFilter || record.date.includes(dateFilter)) &&
-        (!companyFilter || record.Company.toLowerCase().includes(companyFilter.toLowerCase())) &&
-        (!startDateFilter || record.date >= startDateFilter) && // Check if record date is after or equal to start date
-        (!endDateFilter || record.date <= endDateFilter) // Check if record date is before or equal to end date
-      ) {
-        filteredData[key] = record;
-      }
-    });
-    setFilteredRecords(filteredData);
-  };
+  
   
 
   const handleResetFilters = () => {
@@ -153,10 +156,10 @@ const viewRef = useRef(null);
       {isDownloading &&
       <div className="ledger-main">
        <h2 className="Ledger-Info">
-        {companyFilter != "" ? companyFilter + " Ledger" : "Ledger"}
+        {companyFilter !== "" ? companyFilter + " Ledger" : "Ledger"}
       </h2>
       <h2 className="Ledger-Info">
-        {startDateFilter != "" ? "(" + startDateFilter : ""} - {endDateFilter != "" ? endDateFilter + ")" : ""}
+        {startDateFilter !== "" ? "(" + startDateFilter : ""} - {endDateFilter !== "" ? endDateFilter + ")" : ""}
       </h2>
       </div>
       }

@@ -92,6 +92,7 @@ const Search = () => {
                 
               </tr>
             )}
+            return null;
           }
           )
         }
