@@ -6,13 +6,13 @@ import { getDatabase } from "firebase/database";
 
 // Your AG Printers Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCSfcuMdsLvqXwK59pBQN9cb2S4zfMcaC4",
-  authDomain: "ag-printers.firebaseapp.com",
-  projectId: "ag-printers",
-  storageBucket: "ag-printers.appspot.com",
-  messagingSenderId: "391163368460",
-  appId: "1:391163368460:web:ad2c4be4a4f11027ed0a29",
-  measurementId: "G-FJ7KRC133G"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
