@@ -128,13 +128,13 @@ const viewRef = useRef(null);
       const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
       const imgX = (pdfWidth - imgWidth * ratio) / 2;
       const imgY = 10;
-      console.log(imgWidth, imgHeight, ratio, imgX, imgY);
+      
 
       // Add the captured image to the PDF
       doc.addImage(imgData, "PNG", imgX, imgY, imgWidth * ratio, imgHeight *ratio);
 
       // Save the PDF
-      doc.save("view.pdf");
+      doc.save("Ledger.pdf");
       setIsDownloading(false);
     });
   }, 1000); // Adjust the delay as needed
