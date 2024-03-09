@@ -10,7 +10,6 @@ import html2canvas from "html2canvas";
 const Home = () => {
   const [records, setRecords] = useState({});
   const [filteredRecords, setFilteredRecords] = useState({});
-  const [status, setStatus] = useState("");
   const [rgpFilter, setRgpFilter] = useState("");
   const [poFilter, setPoFilter] = useState("");
   const [dateFilter, setDateFilter] = useState("");
@@ -49,28 +48,38 @@ const viewRef = useRef(null);
       const filteredData = {};
       Object.keys(records).forEach((key) => {
         const record = records[key];
-        if (
-          (!status || record.Status === status) &&
-          (!rgpFilter || record.RGP.includes(rgpFilter)) &&
-          (!poFilter || record.PO.includes(poFilter)) &&
-          (!dateFilter || record.date.includes(dateFilter)) &&
-          (!companyFilter || record.Company.toLowerCase().includes(companyFilter.toLowerCase())) &&
-          (!startDateFilter || record.date >= startDateFilter) && // Check if record date is after or equal to start date
-          (!endDateFilter || record.date <= endDateFilter) // Check if record date is before or equal to end date
-        ) {
+        let isFiltered = false;
+        Object.keys(record).forEach((subKey) => {
+          const subRecord = record[subKey];
+          // Check if the sub-record has the necessary properties and matches the filters
+          if (
+            subRecord &&
+            subRecord["ArticleName"] && // Assuming this property is present in all sub-records
+            (!rgpFilter || subRecord["RGP"].includes(rgpFilter)) &&
+            (!poFilter || subRecord["PO"].includes(poFilter)) &&
+            (!dateFilter || subRecord["date"].includes(dateFilter)) &&
+            (!companyFilter || subRecord["Company"].toLowerCase().includes(companyFilter.toLowerCase())) &&
+            (!startDateFilter || subRecord["date"] >= startDateFilter) &&
+            (!endDateFilter || subRecord["date"] <= endDateFilter)
+          ) {
+            isFiltered = true;
+          }
+        });
+        if (isFiltered) {
           filteredData[key] = record;
         }
       });
       setFilteredRecords(filteredData);
     };
     applyFilters();
-  },[status, records, rgpFilter, poFilter, dateFilter, companyFilter, startDateFilter, endDateFilter]);
+  }, [records, rgpFilter, poFilter, dateFilter, companyFilter, startDateFilter, endDateFilter]);
+  
+  
 
   
   
 
   const handleResetFilters = () => {
-    setStatus("");
     setRgpFilter("");
     setPoFilter("");
     setDateFilter("");
@@ -164,11 +173,6 @@ const viewRef = useRef(null);
       </div>
       }
       <div className="head">
-        <select name="Statu" id="Statu" className="statusdrop" onChange={(e) => setStatus(e.target.value)}>
-          <option value="">Status</option>
-          <option value="Paid">Paid</option>
-          <option value="Unpaid">Unpaid</option>
-        </select>
         <input type="text" placeholder="Filter by RGP" value={rgpFilter} onChange={(e) => setRgpFilter(e.target.value)} />
         <input type="text" placeholder="Filter by PO" value={poFilter} onChange={(e) => setPoFilter(e.target.value)} />
         <input type="date" placeholder="Filter by Date" value={dateFilter} className="datee" onChange={(e) => setDateFilter(e.target.value)} />
@@ -189,7 +193,7 @@ const viewRef = useRef(null);
       <table className="styled-table mb-5">
         <thead>
           <tr>
-            <th style={{ textAlign: "center" }}>No.</th>
+            {/* <th style={{ textAlign: "center" }}>No.</th> */}
             <th style={{ textAlign: "center" }}>Date</th>
             <th style={{ textAlign: "center" }}>Invoice No.</th>
             <th style={{ textAlign: "center" }}>Company</th>
@@ -199,45 +203,42 @@ const viewRef = useRef(null);
             <th style={{ textAlign: "center" }}>Quantity</th>
             <th style={{ textAlign: "center" }}>Rate</th>
             <th style={{ textAlign: "center" }}>Amount</th>
-            <th style={{ textAlign: "center" }}>Total</th>
-            <th style={{ textAlign: "center" }}>Status</th>
             <th style={{ textAlign: "center" }} className="action-head">Action</th>
           </tr>
         </thead>
         <tbody>
-          {Object.keys(filteredRecords).map((id, index) => {
-            const record = filteredRecords[id];
-            return (
-              <tr key={id}>
-                <td style={{ textAlign: "center" }}>{index + 1}</td>
-                <td style={{ textAlign: "center" }}>{record.date}</td>
-                <td style={{ textAlign: "center" }}>{record.InvoiceNo}</td>
-                <td style={{ textAlign: "center" }}>{record.Company}</td>
-                <td style={{ textAlign: "center" }}>{record.ArticleName}</td>
-                <td style={{ textAlign: "center" }}>{record.RGP}</td>
-                <td style={{ textAlign: "center" }}>{record.PO}</td>
-                <td style={{ textAlign: "center" }}>{record.Quantity}</td>
-                <td style={{ textAlign: "center" }}>{record.Rate}</td>
-                <td style={{ textAlign: "center" }}>{record.Amount}</td>
-                <td style={{ textAlign: "center" }}>{record.Total}</td>
-                <td style={{ textAlign: "center" }} className={`${record.Status === "Unpaid" ? "red" : "green"}`}>
-                  {record.Status}
-                </td>
-                <td style={{ textAlign: "center" }} className="action-data">
-                  <Link to={`/view/${id}`}>
-                    <button className="btn btn-view">View</button>
-                  </Link>
-                  <Link to={`/edit-record/${id}`}>
-                    <button className="btn btn-edit">Edit</button>
-                  </Link>
-                  <button className="btn btn-delete" onClick={() => onDelete(id)}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
+  {Object.keys(filteredRecords).map((id) => {
+    const record = filteredRecords[id];
+    return Object.keys(record).map((index) => {
+      const subRecord = record[index];
+      return (
+        <tr key={`${id}-${index}`}>
+          {/* <td style={{ textAlign: "center" }}>{index + 1}</td> */}
+          <td style={{ textAlign: "center" }}>{subRecord.date}</td>
+          <td style={{ textAlign: "center" }}>{subRecord.InvoiceNo}</td>
+          <td style={{ textAlign: "center" }}>{subRecord.Company}</td>
+          <td style={{ textAlign: "center" }}>{subRecord.ArticleName}</td>
+          <td style={{ textAlign: "center" }}>{subRecord.RGP}</td>
+          <td style={{ textAlign: "center" }}>{subRecord.PO}</td>
+          <td style={{ textAlign: "center" }}>{subRecord.Quantity}</td>
+          <td style={{ textAlign: "center" }}>{subRecord.Rate}</td>
+          <td style={{ textAlign: "center" }}>{subRecord.Amount}</td>
+          <td style={{ textAlign: "center" }} className="action-data">
+            <Link to={`/view/${id}`}>
+              <button className="btn btn-view">View</button>
+            </Link>
+            <Link to={`/edit-record/${id}/${index}`}>
+              <button className="btn btn-edit">Edit</button>
+            </Link>
+            <button className="btn btn-delete" onClick={() => onDelete(id, index)}>
+              Delete
+            </button>
+          </td>
+        </tr>
+      );
+    });
+  })}
+</tbody>
       </table>
     </div>
   );

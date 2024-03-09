@@ -29,7 +29,7 @@ const router = (
     <Route path="/" element={<App />} >
       <Route path="login" element={<Login />} />
       <Route path="add-record" element={<AddEdit />} />
-      <Route path="edit-record/:id" element={<AddEdit />} />
+      <Route path="edit-record/:id/:index" element={<AddEdit />} />
       <Route path="view/:id" element={<View />} />
       <Route path="search" element={<Search />} />
       <Route path="/" element={<Protected/>}>

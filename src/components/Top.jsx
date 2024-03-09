@@ -1,6 +1,11 @@
 import React from "react";
 import './Top.css';
 function Top({ company, invoiceNo, date}) {
+  const dateObj = new Date(date);
+  const day = dateObj.getDate();
+  const month = dateObj.getMonth() + 1;
+  const year = dateObj.getFullYear();
+  const dateString = `${day}/${month}/${year}`;
   return (
     <div>
       <p className="display-1 fw-bold text-center mb-0">A. G. PRINTERS</p>
@@ -21,7 +26,7 @@ function Top({ company, invoiceNo, date}) {
           </div>
           <div className="mx-1 text-left border border-black border-1 rounded shadow bg-body-tertiary rounded d-flex gap-4">
             <p className="fw-bolder mx-2">Date: </p>
-            <h3 className="fw-bolder mx-2">{date}</h3>
+            <h3 className="fw-bolder mx-2">{dateString}</h3>
           </div>
         </div>
       </div>
