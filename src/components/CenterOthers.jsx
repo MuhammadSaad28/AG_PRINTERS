@@ -62,7 +62,7 @@ function CenterOthers({record}) {
 <td className="border border-dark ">{record.length > 2 ? record[2].ArticleName : ""}</td>
 <td className="border border-dark text-center">{record.length > 2 ? record[2].Quantity + " mtr" : ""}</td>
 <td className="border border-dark text-center">{record.length > 2 ? "Rs " + record[2].Rate + "/-" : ""}</td>
-<td className="border border-dark text-center">{record.length > 2 ? record[2].Amount : ""}/-</td>
+<td className="border border-dark text-center">{record.length > 2 ? record[2].Amount + "/-" : ""}</td>
 </tr>
 <tr style={{ height: '2.5rem' }}>
 
