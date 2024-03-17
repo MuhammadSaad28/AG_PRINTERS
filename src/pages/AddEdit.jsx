@@ -144,7 +144,7 @@ const AddEdit = () => {
                 <input type="date" id='date' name='date' placeholder='date' value={state.date || ''} onChange={HandleInputChange} />
                 <input type="text" id='Company' name='Company' placeholder='Company' value={state.Company || ''} onChange={HandleInputChange} />
                 <select name="numberOfInvoices" id="numberOfInvoices" value={numberOfInvoices} onChange={(e) => setNumberOfInvoices(parseInt(e.target.value))}>
-                    {[...Array(10)].map((_, i) => (
+                    {[...Array(16)].map((_, i) => (
                         <option key={i + 1} value={i + 1}>{i + 1}</option>
                     ))}
                 </select>

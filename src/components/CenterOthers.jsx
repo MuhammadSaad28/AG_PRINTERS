@@ -1,8 +1,8 @@
 import React from "react";
 
+
 function CenterOthers({record}) {
-    console.log("Record: ", record);
-  return (
+     return (
     <div className="">
       <table className="table my-1">
         <thead className="bg-dark text-white text-center rounded-top">
@@ -120,54 +120,54 @@ function CenterOthers({record}) {
 <td className="border border-dark text-center">{record.length > 9 ? "Rs " + record[9].Rate + "/-" : ""}</td>
 <td className="border border-dark text-center">{record.length > 9 ? record[9].Amount + "/-" : ""}</td>
 </tr>
-        <tr style={{ height: '2.5rem' }}>
+<tr style={{ height: '2.5rem' }}>
 
-            <th scope="row" className="border border-dark"></th>
-            <td className="border border-dark "></td>
-            <td className="border border-dark"></td>
-            <td className="border border-dark"></td>
-            <td className="border border-dark"></td>
-          </tr>
-        <tr style={{ height: '2.5rem' }}>
+<th scope="row" className="border border-dark text-center">{record.length > 10 ? 11 : ""}</th>
+<td className="border border-dark ">{record.length > 10 ? record[10].ArticleName : ""}</td>
+<td className="border border-dark text-center">{record.length > 10 ? record[9].Quantity + " mtr" : ""}</td>
+<td className="border border-dark text-center">{record.length > 10 ? "Rs " + record[10].Rate + "/-" : ""}</td>
+<td className="border border-dark text-center">{record.length > 10 ? record[10].Amount + "/-" : ""}</td>
+</tr>
+<tr style={{ height: '2.5rem' }}>
 
-            <th scope="row" className="border border-dark"></th>
-            <td className="border border-dark "></td>
-            <td className="border border-dark"></td>
-            <td className="border border-dark"></td>
-            <td className="border border-dark"></td>
-          </tr>
-        <tr style={{ height: '2.5rem' }}>
+<th scope="row" className="border border-dark text-center">{record.length > 11 ? 12 : ""}</th>
+<td className="border border-dark ">{record.length > 11 ? record[11].ArticleName : ""}</td>
+<td className="border border-dark text-center">{record.length > 11 ? record[11].Quantity + " mtr" : ""}</td>
+<td className="border border-dark text-center">{record.length > 11 ? "Rs " + record[11].Rate + "/-" : ""}</td>
+<td className="border border-dark text-center">{record.length > 11 ? record[11].Amount + "/-" : ""}</td>
+</tr>
+<tr style={{ height: '2.5rem' }}>
 
-            <th scope="row" className="border border-dark"></th>
-            <td className="border border-dark "></td>
-            <td className="border border-dark"></td>
-            <td className="border border-dark"></td>
-            <td className="border border-dark"></td>
-          </tr>
-        <tr style={{ height: '2.5rem' }}>
+<th scope="row" className="border border-dark text-center">{record.length > 12 ? 13 : ""}</th>
+<td className="border border-dark ">{record.length > 12 ? record[12].ArticleName : ""}</td>
+<td className="border border-dark text-center">{record.length > 12 ? record[12].Quantity + " mtr" : ""}</td>
+<td className="border border-dark text-center">{record.length > 12 ? "Rs " + record[12].Rate + "/-" : ""}</td>
+<td className="border border-dark text-center">{record.length > 12 ? record[12].Amount + "/-" : ""}</td>
+</tr>
+<tr style={{ height: '2.5rem' }}>
 
-            <th scope="row" className="border border-dark"></th>
-            <td className="border border-dark "></td>
-            <td className="border border-dark"></td>
-            <td className="border border-dark"></td>
-            <td className="border border-dark"></td>
-          </tr>
-        <tr style={{ height: '2.5rem' }}>
+<th scope="row" className="border border-dark text-center">{record.length > 13 ? 14 : ""}</th>
+<td className="border border-dark ">{record.length > 13 ? record[13].ArticleName : ""}</td>
+<td className="border border-dark text-center">{record.length > 13 ? record[13].Quantity + " mtr" : ""}</td>
+<td className="border border-dark text-center">{record.length > 13 ? "Rs " + record[13].Rate + "/-" : ""}</td>
+<td className="border border-dark text-center">{record.length > 13 ? record[13].Amount + "/-" : ""}</td>
+</tr>
+<tr style={{ height: '2.5rem' }}>
 
-            <th scope="row" className="border border-dark"></th>
-            <td className="border border-dark "></td>
-            <td className="border border-dark"></td>
-            <td className="border border-dark"></td>
-            <td className="border border-dark"></td>
-          </tr>
-        <tr style={{ height: '2.5rem' }}>
+<th scope="row" className="border border-dark text-center">{record.length > 14 ? 15 : ""}</th>
+<td className="border border-dark ">{record.length > 14 ? record[14].ArticleName : ""}</td>
+<td className="border border-dark text-center">{record.length > 14 ? record[14].Quantity + " mtr" : ""}</td>
+<td className="border border-dark text-center">{record.length > 14 ? "Rs " + record[14].Rate + "/-" : ""}</td>
+<td className="border border-dark text-center">{record.length > 14 ? record[14].Amount + "/-" : ""}</td>
+</tr>
+<tr style={{ height: '2.5rem' }}>
 
-            <th scope="row" className="border border-dark"></th>
-            <td className="border border-dark "></td>
-            <td className="border border-dark"></td>
-            <td className="border border-dark"></td>
-            <td className="border border-dark"></td>
-          </tr>
+<th scope="row" className="border border-dark text-center">{record.length > 15 ? 16 : ""}</th>
+<td className="border border-dark ">{record.length > 15 ? record[15].ArticleName : ""}</td>
+<td className="border border-dark text-center">{record.length > 15 ? record[15].Quantity + " mtr" : ""}</td>
+<td className="border border-dark text-center">{record.length > 15 ? "Rs " + record[15].Rate + "/-" : ""}</td>
+<td className="border border-dark text-center">{record.length > 15 ? record[15].Amount + "/-" : ""}</td>
+</tr>
         </tbody>
         
       </table> 
